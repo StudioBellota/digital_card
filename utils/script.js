@@ -4,7 +4,6 @@ document.getElementById('interactiveCard').addEventListener('click', function(e)
     }
 });
 
-// Opcional: Suavizar redimensionamiento en tiempo real
 window.addEventListener('resize', function() {
     document.body.style.overflow = 'hidden';
     setTimeout(() => {
