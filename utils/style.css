@@ -1,0 +1,280 @@
+:root {
+  --primary: #a26a5a;
+  --secondary: #caa48a;
+  --light: #f9f4ed;
+  --gradient-start: #f3d2b9;
+  --gradient-end: #f8e5b7;
+  --card-width: 350px;
+  --card-height: 480px;
+  --footer-font-size: 14px;
+  --footer-padding: 15px 20px;
+  --footer-align: flex-start;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: url('../img/desktop.jpg') no-repeat center/cover fixed;
+  backdrop-filter: blur(5px);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  margin: 0;
+  transition: background-size 0.5s ease;
+}
+
+.main-container,
+.card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  transition: all 0.5s ease;
+}
+
+.card-container {
+  perspective: 1000px;
+  width: var(--card-width);
+  height: var(--card-height);
+  margin-bottom: 40px;
+}
+
+.card,
+.card-face {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  background: linear-gradient(135deg, var(--primary), var(--light));
+  position: relative;
+  transition: transform 1s;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.card {
+  transform-style: preserve-3d;
+  border-style: solid;
+}
+
+.card.flipped {
+  transform: rotateY(180deg);
+}
+
+.card-face {
+  position: absolute;
+  backface-visibility: hidden;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-clip: padding-box;
+  border: 1px solid transparent;
+}
+
+.card-front,
+.card-back {
+  background: linear-gradient(135deg, var(--primary), var(--light));
+  justify-content: flex-start;
+}
+
+.card-front {
+  cursor: pointer;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+  padding-top: 10px;
+}
+
+.character-container {
+  width: 100%;
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px 0;
+  overflow: hidden;
+  position: relative;
+  border-radius: 15px;
+}
+
+.title,
+.back-title {
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 10px;
+  color: #5c4029;
+}
+
+.back-title {
+  margin-bottom: 10%;
+}
+
+.subtitle-container {
+  padding-top: 5%;
+}
+
+.subtitle {
+  font-size: 16px;
+  opacity: 0.9;
+  text-align: center;
+  color: var(--primary);
+}
+
+.social-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 50px;
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.social-btn i {
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+.social-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.social-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.social-btn:hover::before {
+  left: 0;
+}
+
+.instagram {
+  background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+}
+
+.whatsapp {
+  background: linear-gradient(45deg, #25D366, #128C7E);
+}
+
+.tiktok {
+  background: linear-gradient(45deg, #000, #25F4EE, #FE2C55);
+}
+
+.facebook {
+    background: linear-gradient(45deg, #1877F2, #0A5AC2);
+}
+
+.behance {
+    background: linear-gradient(45deg, #1769FF, #2132A5);
+}
+
+.gmail {
+    background: linear-gradient(45deg, #D44638, #EA4335);
+}
+
+.footer {
+  width: 100%;
+  padding: var(--footer-padding);
+  text-align: left;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--light);
+  font-size: var(--footer-font-size);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: var(--footer-align);
+  align-items: center;
+}
+
+.footer p {
+  margin: 0;
+  width: 100%;
+  font-size: large;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+}
+
+.no-flip {
+  pointer-events: auto;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --card-width: 80%;
+    --card-height: 450px;
+    --footer-align: center;
+  }
+
+  .title {
+    font-size: 26px;
+  }
+
+  .subtitle {
+    font-size: 18px;
+  }
+
+  .footer {
+    padding: 12px 18px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 576px) {
+  :root {
+    --card-width: 90%;
+    --card-height: 500px;
+    --footer-font-size: 12px;
+    --footer-padding: 10px 15px;
+    --footer-align: center;
+  }
+
+  .character-container {
+    height: 200px;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+
+  .subtitle {
+    font-size: 20px;
+  }
+
+  .footer p {
+    max-width: 90%;
+  }
+}
