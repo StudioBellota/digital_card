@@ -10,8 +10,3 @@ window.addEventListener('resize', function() {
         document.body.style.overflow = '';
     }, 300);
 });
-
-window.addEventListener('DOMContentLoaded', () => {
-    const audio = document.getElementById('bgMusic');
-    audio.volume = 0.15;
-});
