@@ -333,19 +333,6 @@ body {
     --footer-align: center;
   }
 
-  body {
-    overflow: hidden;
-    height: 100vh;
-    position: fixed;
-    width: 100%;
-  }
-  
-  .main-container {
-    max-height: calc(100vh - 60px);
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-
   .character-container {
     max-height: auto;
   }
@@ -361,5 +348,6 @@ body {
 
   .footer p {
     max-width: 90%;
-  }  
+  }
+
 }
