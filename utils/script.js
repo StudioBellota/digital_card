@@ -10,3 +10,13 @@ window.addEventListener('resize', function() {
         document.body.style.overflow = '';
     }, 300);
 });
+
+window.addEventListener('DOMContentLoaded', function() {
+    const video = document.getElementById('introVideo');
+    if (video) {
+        video.play().catch(() => {}); 
+        video.addEventListener('ended', () => {
+            video.pause();
+        });
+    }
+});
