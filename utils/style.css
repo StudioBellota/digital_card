@@ -1,18 +1,16 @@
 :root {
-  --primary: #a26a5a;
-  --secondary: #caa48a;
-  --light: #f9f4ed;
-  --gradient-start: #f3d2b9;
-  --gradient-end: #f8e5b7;
+  --primary: #6d3914;
+  --secondary: #ab7843;
+  --font-color: #4c2b08;
   --card-width: 350px;
-  --card-height: 480px;
+  --card-height: 510px;
   --footer-font-size: 14px;
   --footer-padding: 15px 20px;
   --footer-align: flex-start;
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
   background: url('../img/fondo.gif') no-repeat center/cover fixed;
   backdrop-filter: blur(5px);
   min-height: 100vh;
@@ -23,6 +21,17 @@ body {
   padding: 20px;
   margin: 0;
   transition: background-size 0.5s ease;
+}
+
+.logo {
+  width: 80%;
+  height: auto;
+  margin-bottom: 2%;
+}
+
+.title {
+  color: var(--primary);
+  font-weight: 500;
 }
 
 .main-container,
@@ -47,7 +56,7 @@ body {
   width: 100%;
   height: 100%;
   border-radius: 15px;
-  background: linear-gradient(135deg, var(--primary), var(--light));
+  background: var(--secondary);
   position: relative;
   transition: transform 1s;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
@@ -77,7 +86,7 @@ body {
 
 .card-front,
 .card-back {
-  background: linear-gradient(135deg, var(--primary), var(--light));
+  background: var(--secondary);
   justify-content: flex-start;
 }
 
@@ -92,17 +101,20 @@ body {
 
 .character-container {
   width: 100%;
-  height: 250px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 5px 0;
+  height: auto;
+  max-height: 320px;
   overflow: hidden;
-  position: relative;
   border-radius: 15px;
 }
 
-.title,
+.character-container video {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  border-radius: 15px;
+}
+
 .back-title {
   font-weight: 700;
   text-align: center;
@@ -130,7 +142,6 @@ body {
   flex-direction: column;
   gap: 15px;
   width: 100%;
-  margin-top: 30px;
 }
 
 .social-btn {
@@ -139,19 +150,34 @@ body {
   justify-content: center;
   padding: 10px;
   border-radius: 50px;
+  border-style: solid;
+  border-width: 3px;
   text-decoration: none;
-  color: white;
+  color: var(--primary);
   font-weight: 600;
   position: relative;
   overflow: hidden;
   cursor: pointer;
   font-size: 14px;
   transition: all 0.3s ease;
+  z-index: 1;
 }
 
-.social-btn i {
+.social-btn i,
+.social-btn p {
   margin-right: 10px;
   font-size: 20px;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+  color: var(--primary);
+  margin: 0;
+}
+
+.social-btn p {
+  font-size: 14px;
+  font-weight: 600;
+  margin-left: 1%;
 }
 
 .social-btn::before {
@@ -161,8 +187,9 @@ body {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--primary);
   transition: all 0.3s ease;
+  z-index: 0;
 }
 
 .social-btn:hover {
@@ -170,42 +197,22 @@ body {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
+.social-btn:hover i,
+.social-btn:hover p {
+  color: var(--secondary);
+}
+
 .social-btn:hover::before {
   left: 0;
-}
-
-.instagram {
-  background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
-}
-
-.whatsapp {
-  background: linear-gradient(45deg, #25D366, #128C7E);
-}
-
-.tiktok {
-  background: linear-gradient(45deg, #000, #25F4EE, #FE2C55);
-}
-
-.facebook {
-    background: linear-gradient(45deg, #1877F2, #0A5AC2);
-}
-
-.behance {
-    background: linear-gradient(45deg, #1769FF, #2132A5);
-}
-
-.gmail {
-    background: linear-gradient(45deg, #D44638, #EA4335);
 }
 
 .footer {
   width: 100%;
   padding: var(--footer-padding);
   text-align: left;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(109, 57, 20, 0.406);
   backdrop-filter: blur(5px);
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-  color: var(--light);
   font-size: var(--footer-font-size);
   position: fixed;
   bottom: 0;
@@ -219,38 +226,13 @@ body {
 .footer p {
   margin: 0;
   width: 100%;
-  font-size: large;
-}
-
-img {
-  width: 100%;
-  height: auto;
-  border-radius: 15px;
+  font-size: 14;
+  font-weight: 500;
+  color: var(--secondary);
 }
 
 .no-flip {
   pointer-events: auto;
-}
-
-@media (max-width: 768px) {
-  :root {
-    --card-width: 80%;
-    --card-height: 450px;
-    --footer-align: center;
-  }
-
-  .title {
-    font-size: 26px;
-  }
-
-  .subtitle {
-    font-size: 18px;
-  }
-
-  .footer {
-    padding: 12px 18px;
-    text-align: center;
-  }
 }
 
 @media (max-width: 576px) {
@@ -263,11 +245,13 @@ img {
   }
 
   .character-container {
-    height: 200px;
+    max-height: auto;
   }
 
+
   .title {
-    font-size: 28px;
+    font-size: 14px;
+    text-align: center;
   }
 
   .subtitle {
