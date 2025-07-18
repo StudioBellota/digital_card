@@ -3,7 +3,7 @@
   --secondary: #ab7843;
   --font-color: #4c2b08;
   --card-width: 350px;
-  --card-height: 510px;
+  --card-height: 580px;
   --footer-font-size: 14px;
   --footer-padding: 15px 20px;
   --footer-align: flex-start;
@@ -76,7 +76,7 @@ body {
 }
 
 .loading-gif {
-  width: 500px;
+  width: 200px;
   height: auto;
   transform: scale(0);
   opacity: 0;
@@ -348,5 +348,36 @@ body {
   .footer p {
     max-width: 90%;
   }
+}
 
+/* Botones para cambiar video */
+.video-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.video-buttons .btn {
+  font-family: "Roboto Condensed", sans-serif;
+  border-radius: 30px;
+  padding: 8px 18px;
+  font-weight: 600;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+  background-color: transparent;
+  transition: all 0.3s ease;
+  font-size: 14px;
+}
+
+.video-buttons .btn:hover {
+  background-color: var(--primary);
+  color: white;
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.video-buttons .btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(109, 57, 20, 0.25);
 }
