@@ -9,7 +9,6 @@
   --footer-align: flex-start;
 }
 
-
 body {
   font-family: "Roboto Condensed", sans-serif;
   background: url('../img/fondo.gif') no-repeat center/cover fixed;
@@ -77,7 +76,7 @@ body {
 }
 
 .loading-gif {
-  width: 400px;
+  width: 200px;
   height: auto;
   transform: scale(0);
   opacity: 0;
@@ -191,7 +190,7 @@ body {
 .character-container {
   width: 100%;
   height: auto;
-  max-height: 320px;
+  max-height: 400px;
   overflow: hidden;
   border-radius: 15px;
 }
