@@ -106,4 +106,3 @@ function cambiarVideo(ruta) {
     }
   }
 }
-
