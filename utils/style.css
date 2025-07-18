@@ -111,7 +111,6 @@ body {
   100% { transform: scale(0); opacity: 0; }
 }
 
-/* Resto de tu CSS existente... */
 .logo {
   width: 80%;
   height: auto;
