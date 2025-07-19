@@ -40,14 +40,13 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   background-size: 200px;
-  color: white;
+  color: var(--secondary);
   padding: 20px 40px;
   width: 240px;
   height: 100px;
   border: none;
   border-radius: 50px;
   cursor: pointer;
-  color: var(--secondary);
   box-shadow: 0 5px 15px rgba(0,0,0,0.3);
   transition: all 0.3s ease;
   transform: scale(1);
@@ -203,15 +202,29 @@ body {
   border-radius: 15px;
 }
 
+.video-avatar {
+  width: 100%;
+  max-width: 300px;
+  max-height: 600px;
+}
+
+.video-showreel {
+  width: 100%;
+  max-width: 600px;
+  max-height: 600px;
+}
+
+.video-presentacion {
+  width: 100%;
+  max-width: 400px;
+  max-height: 345px;
+}
+
 .back-title {
   font-weight: 700;
   text-align: center;
   margin-bottom: 10px;
   color: #5c4029;
-}
-
-.back-title {
-  margin-bottom: 10%;
 }
 
 .subtitle-container {
@@ -314,7 +327,7 @@ body {
 .footer p {
   margin: 0;
   width: 100%;
-  font-size: 14;
+  font-size: 14px;
   font-weight: 500;
   color: var(--secondary);
 }
@@ -326,7 +339,7 @@ body {
 @media (max-width: 576px) {
   :root {
     --card-width: 90%;
-    --card-height: 500px;
+    --card-height: 580px;
     --footer-font-size: 12px;
     --footer-padding: 10px 15px;
     --footer-align: center;
@@ -335,6 +348,12 @@ body {
   .character-container {
     max-height: auto;
   }
+
+.video-presentacion {
+  width: 100%;
+  max-width: 400px;
+  max-height: 270px;
+}
 
   .title {
     font-size: 14px;
@@ -350,7 +369,6 @@ body {
   }
 }
 
-/* Botones para cambiar video */
 .video-buttons {
   display: flex;
   justify-content: center;
@@ -380,4 +398,41 @@ body {
 .video-buttons .btn:focus {
   outline: none;
   box-shadow: 0 0 0 0.2rem rgba(109, 57, 20, 0.25);
+}
+
+/* ===== MODAL Show Reel ===== */
+.modal-content {
+  background-color: transparent;
+  border: none;
+  padding-bottom: 5%;
+}
+
+.modal-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#showReelVideo{
+  max-width: 100%;
+  max-height: 80vh;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+#presentacionVideo {
+  max-width: 38%;
+  max-height: 80vh;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.modal-backdrop.show {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+@media (max-width: 576px) {
+    #presentacionVideo {
+    max-width: 60%;
+  }
 }
