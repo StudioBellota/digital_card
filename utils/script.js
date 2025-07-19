@@ -7,32 +7,20 @@ document.getElementById('enterButton').addEventListener('click', function () {
     const mainContainer = document.querySelector('.main-container');
     const bgMusic = document.getElementById('backgroundMusic');
 
-    // Configurar música de fondo
-    bgMusic.volume = 0.15; // 15% de volumen
+    bgMusic.volume = 0.15;
 
-    // 1. Animación del botón al hacer clic
     button.classList.add('clicked');
 
-    // 2. Después de que el botón desaparezca, mostrar el gif de carga
     setTimeout(() => {
         welcomeScreen.style.display = 'none';
         loadingScreen.style.display = 'flex';
         loadingGif.classList.add('active');
 
-        // Intentar reproducir la música (solo después de interacción del usuario)
-        const playPromise = bgMusic.play();
+        bgMusic.play().catch(() => {
+            bgMusic.muted = true;
+            bgMusic.play().then(() => bgMusic.muted = false);
+        });
 
-        if (playPromise !== undefined) {
-            playPromise.catch(error => {
-                console.log('Reproducción automática de música fallida:', error);
-                bgMusic.muted = true;
-                bgMusic.play().then(() => {
-                    bgMusic.muted = false;
-                });
-            });
-        }
-
-        // Simular carga (2 segundos)
         setTimeout(() => {
             loadingGif.classList.remove('active');
             loadingGif.classList.add('finish');
@@ -44,65 +32,94 @@ document.getElementById('enterButton').addEventListener('click', function () {
                 const video = document.getElementById('introVideo');
                 if (video) {
                     video.muted = false;
-                    const videoPlayPromise = video.play();
-
-                    if (videoPlayPromise !== undefined) {
-                        videoPlayPromise.then(() => {
-                            console.log('Video reproduciéndose automáticamente');
-                        }).catch(error => {
-                            console.log('Reproducción automática fallida:', error);
-                            video.muted = true;
-                            video.play();
-                        });
-                    }
+                    video.play().catch(() => {
+                        video.muted = true;
+                        video.play();
+                    });
                 }
             }, 800);
         }, 2000);
     }, 800);
 });
 
-// Funcionalidad de voltear la tarjeta (excepto al dar clic en botones de cambiar video)
+// Voltear la tarjeta excepto si es un botón, showreel o presentación
 document.getElementById('interactiveCard').addEventListener('click', function (e) {
-    const cardFront = document.querySelector('.card-front');
-    
-    // Si el clic está dentro de la tarjeta pero no en un botón de cambiar video
-    if (this.contains(e.target) && !e.target.closest('.btn-cambiar-video')) {
+    if (!e.target.closest('.btn-cambiar-video') && 
+        !e.target.closest('#showReelBtn') && 
+        !e.target.closest('#presentacionBtn')) {
         this.classList.toggle('flipped');
     }
 });
 
-
-
-
-// Manejar redimensionamiento de ventana
-window.addEventListener('resize', function () {
+// Redimensionamiento
+window.addEventListener('resize', () => {
     document.body.style.overflow = 'hidden';
-    setTimeout(() => {
-        document.body.style.overflow = '';
-    }, 300);
+    setTimeout(() => document.body.style.overflow = '', 300);
 });
 
-// Precargar el video cuando cargue la página
-window.addEventListener('DOMContentLoaded', function () {
+// Precargar video
+window.addEventListener('DOMContentLoaded', () => {
     const video = document.getElementById('introVideo');
-    if (video) {
-        video.load();
+    if (video) video.load();
+});
+
+// Cambiar video en la tarjeta
+function cambiarVideo(ruta) {
+    const video = document.getElementById("introVideo");
+    const source = video.querySelector("source");
+
+    video.classList.remove("video-avatar", "video-showreel", "video-presentacion");
+
+    if (ruta.includes('video.mp4')) {
+        video.classList.add('video-avatar');
+    } else if (ruta.includes('video2.mp4')) {
+        video.classList.add('video-showreel');
+    } else if (ruta.includes('video3.mp4')) {
+        video.classList.add('video-presentacion');
+    }
+
+    video.pause();
+    source.setAttribute("src", ruta);
+    video.load();
+    video.play();
+}
+
+// Mostrar Show Reel en modal
+document.getElementById('showReelBtn').addEventListener('click', function (e) {
+    e.stopPropagation();
+    const modalElement = document.getElementById('showReelModal');
+    const bootstrapModal = new bootstrap.Modal(modalElement);
+    bootstrapModal.show();
+
+    const showReelVideo = document.getElementById('showReelVideo');
+    if (showReelVideo) {
+        showReelVideo.currentTime = 0;
+        showReelVideo.play();
     }
 });
 
-// ================================
-// Función para cambiar el video
-// ================================
-function cambiarVideo(ruta) {
-  const video = document.getElementById('introVideo');
-  if (video) {
-    const source = video.querySelector('source');
-    if (source) {
-      source.setAttribute('src', ruta); // Cambia el src de la etiqueta <source>
-      video.load();                     // Recarga el video
-      video.play().catch(error => {    // Intenta reproducirlo
-        console.log("No se pudo reproducir el nuevo video:", error);
-      });
+// Pausar Show Reel al cerrar modal
+document.getElementById('showReelModal').addEventListener('hidden.bs.modal', function () {
+    const showReelVideo = document.getElementById('showReelVideo');
+    if (showReelVideo) showReelVideo.pause();
+});
+
+// Mostrar Presentación en modal
+document.getElementById('presentacionBtn').addEventListener('click', function (e) {
+    e.stopPropagation();
+    const modalElement = document.getElementById('presentacionModal');
+    const bootstrapModal = new bootstrap.Modal(modalElement);
+    bootstrapModal.show();
+
+    const presentacionVideo = document.getElementById('presentacionVideo');
+    if (presentacionVideo) {
+        presentacionVideo.currentTime = 0;
+        presentacionVideo.play();
     }
-  }
-}
+});
+
+// Pausar Presentación al cerrar modal
+document.getElementById('presentacionModal').addEventListener('hidden.bs.modal', function () {
+    const presentacionVideo = document.getElementById('presentacionVideo');
+    if (presentacionVideo) presentacionVideo.pause();
+});
