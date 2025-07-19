@@ -41,7 +41,7 @@
           <img src="img/logo_largo.svg" alt="logo_largo" class="logo">
           <p class="title">ILUSTRACIÓN Y ANIMACIÓN DIGITAL</p>
           <div class="character-container">
-            <video id="introVideo" playsinline muted>
+            <video id="introVideo" playsinline muted class="video-avatar">
               <source src="./img/video.mp4" type="video/mp4">
               Tu navegador no soporta video HTML5.
             </video>
@@ -49,13 +49,12 @@
 
           <!-- Botones de cambio de video -->
           <div class="video-buttons text-center mt-3">
-            <button class="btn btn-outline-primary me-2 btn-cambiar-video" onclick="cambiarVideo('./img/video.mp4')">Avatar</button>
-            <button class="btn btn-outline-primary me-2 btn-cambiar-video" onclick="cambiarVideo('./img/video2.mp4')">Show Reel</button>
-            <button class="btn btn-outline-primary btn-cambiar-video" onclick="cambiarVideo('./img/video3.mp4')">Presentación</button>
+            <!-- <button class="btn btn-outline-primary me-2 btn-cambiar-video" onclick="cambiarVideo('./img/video.mp4')">Avatar</button> -->
+            <button id="showReelBtn" class="btn btn-outline-primary me-2 showreel-btn">Show Reel</button>
+            <button id="presentacionBtn" class="btn btn-outline-primary presentacion-btn">Presentación</button>
           </div> 
-          
-
         </div>
+
         <div class="card-face card-back">
           <img src="img/logo_largo.svg" alt="logo_largo" class="logo">
           <p class="title">ILUSTRACIÓN Y ANIMACIÓN DIGITAL</p>
@@ -85,10 +84,39 @@
         </div>
       </div>
     </div>
+
     <audio id="backgroundMusic" loop>
-        <source src="img/musica/musica.mp3" type="audio/mpeg">
-        Tu navegador no soporta el elemento de audio.
+      <source src="img/musica/musica.mp3" type="audio/mpeg">
+      Tu navegador no soporta el elemento de audio.
     </audio>
+  </div>
+
+  <!-- Modal Show Reel -->
+  <div class="modal fade" id="showReelModal" tabindex="-1" aria-labelledby="showReelModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content bg-transparent border-0">
+        <div class="modal-body p-0">
+          <video id="showReelVideo" class="w-100" controls>
+            <source src="./img/video2.mp4" type="video/mp4">
+            Tu navegador no soporta el elemento de video.
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Presentación -->
+  <div class="modal fade" id="presentacionModal" tabindex="-1" aria-labelledby="presentacionModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content bg-transparent border-0">
+        <div class="modal-body p-0">
+          <video id="presentacionVideo" class="w-100" controls>
+            <source src="./img/video3.mp4" type="video/mp4">
+            Tu navegador no soporta el elemento de video.
+          </video>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Footer -->
@@ -98,17 +126,6 @@
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-  <!-- JS -->
-  <script>
-    function cambiarVideo(ruta) {
-      const video = document.getElementById("introVideo");
-      video.pause();
-      video.querySelector("source").setAttribute("src", ruta);
-      video.load();
-      video.play();
-    }
-  </script>
   <script src="utils/script.js"></script>
 </body>
 </html>
