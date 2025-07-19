@@ -76,7 +76,7 @@ body {
 }
 
 .loading-gif {
-  width: 400px;
+  width: 200px;
   height: auto;
   transform: scale(0);
   opacity: 0;
